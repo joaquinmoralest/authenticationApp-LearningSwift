@@ -2,20 +2,22 @@
 //  ContentView.swift
 //  authentication
 //
-//  Created by Joaquin Yapp on 29-04-23.
+//  Created by Joaquin Yapp on 30-04-23.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Group {
+            if viewModel.userSession != nil {
+                ProfileView()
+            } else {
+                LoginView()
+            }
         }
-        .padding()
     }
 }
 
